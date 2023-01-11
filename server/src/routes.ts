@@ -1,6 +1,20 @@
-import { Express, Request, Response } from 'express';
-import { helloWorld } from './controllers/user.controller';
+import { Express } from 'express';
+import {
+  createUser,
+  deleteUser,
+  getUser,
+  getUserById,
+  updateUser,
+} from './controllers/user.controller';
 
 export function routes(app: Express) {
-  app.get('/', helloWorld);
+  app.get('/', getUser);
+
+  app.get('/:id', getUserById);
+
+  app.post('/signup', createUser);
+
+  app.patch('/:id', updateUser);
+
+  app.delete('/:id', deleteUser);
 }
