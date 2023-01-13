@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function getUser(req: Request, res: Response) {
+export async function loginUser(req: Request, res: Response) {
   try {
     const response = await prisma.user.findMany();
     res.status(200).json(response);
