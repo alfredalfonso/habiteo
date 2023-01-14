@@ -3,14 +3,14 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function loginUser(req: Request, res: Response) {
-  try {
-    const response = await prisma.user.findMany();
-    res.status(200).json(response);
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
-  }
-}
+// export async function loginUser(req: Request, res: Response) {
+//   try {
+//     const response = await prisma.user.findMany();
+//     res.status(200).json(response);
+//   } catch (error) {
+//     res.status(500).json({ msg: error.message });
+//   }
+// }
 
 export async function getUserById(req: Request, res: Response) {
   try {
@@ -26,7 +26,7 @@ export async function getUserById(req: Request, res: Response) {
 }
 
 export async function createUser(req: Request, res: Response) {
-  const { name, email, password } = req.body;
+  const { name, email, password }: { name: string; email: string; password: string } = req.body;
 
   try {
     const user = await prisma.user.create({

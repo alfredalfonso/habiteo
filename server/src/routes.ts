@@ -1,20 +1,18 @@
 import { Express } from 'express';
-import {
-  createUser,
-  deleteUser,
-  loginUser,
-  getUserById,
-  updateUser,
-} from './controllers/user.controller';
+import { createUser, deleteUser, updateUser } from './controllers/user.controller';
+
+import { createSession } from './controllers/session.controller';
 
 export function routes(app: Express) {
+  // User
+
   app.post('/signup', createUser);
-
-  app.post('/login', loginUser);
-
-  app.get('/:id', getUserById);
 
   app.patch('/:id', updateUser);
 
   app.delete('/:id', deleteUser);
+
+  // Session
+
+  app.post('/login', createSession);
 }
