@@ -1,7 +1,7 @@
-import { LoginForm } from '../components/LoginForm';
+import { LoginForm, ILoginProps } from '../components/LoginForm';
 
 export function Login() {
-  const handleSubmit = (email: string, password: string) => {
+  const handleSubmit = ({ email, password }: ILoginProps) => {
     console.log({ email, password });
   };
 

@@ -2,11 +2,16 @@ import { Button, Form } from 'react-bootstrap';
 import { CenterComponent } from '../containers/CenterComponent';
 import React, { useState } from 'react';
 
-interface IFormProps {
-  onSubmit: (email: string, password: string) => void;
+export interface ILoginProps {
+  email: string;
+  password: string;
 }
 
-export function LoginForm(props: IFormProps) {
+export interface ILoginFormProps {
+  onSubmit: ({ email, password }: ILoginProps) => void;
+}
+
+export function LoginForm(props: ILoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,7 +19,7 @@ export function LoginForm(props: IFormProps) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    onSubmit(email, password);
+    onSubmit({ email, password });
   }
 
   return (
