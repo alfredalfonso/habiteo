@@ -1,16 +1,19 @@
 import express from 'express';
-import dotenv from 'dotenv';
-import { routes } from './routes';
-import cors from 'cors';
+import * as dotenv from 'dotenv';
+import { orderRouter } from './routes/order.route';
+import { userRouter } from './routes/user.route';
+import { sessionRouter } from './routes/session.router';
+import { deserializeUser } from './middlewares/deserializeUser';
 
-dotenv.config();
 const app = express();
+dotenv.config();
+
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:5173' }));
-const port = process.env.APP_PORT;
+app.use(deserializeUser);
+app.use('/order', orderRouter);
+app.use('/user', userRouter);
+app.use('/session', sessionRouter);
 
-app.listen(port, async () => {
-  console.log(`App is running at http://localhost:${port}`);
-
-  routes(app);
+app.listen(process.env.PORT, () => {
+  console.log('Node server started running at http://localhost:' + process.env.PORT);
 });
