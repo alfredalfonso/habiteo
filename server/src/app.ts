@@ -1,5 +1,6 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
+import cors from 'cors';
 import { orderRouter } from './routes/order.route';
 import { userRouter } from './routes/user.route';
 import { sessionRouter } from './routes/session.router';
@@ -10,6 +11,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(deserializeUser);
+app.use(cors({ origin: 'http://localhost:5173' }));
 app.use('/order', orderRouter);
 app.use('/user', userRouter);
 app.use('/session', sessionRouter);
