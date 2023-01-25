@@ -11,11 +11,17 @@ export function SignUp() {
     },
   });
 
-  const handleSubmit = (name: string, email: string, password: string) => {
+  const handleSubmit = (
+    name: string,
+    email: string,
+    password: string,
+    passwordConfirmation: string
+  ) => {
     addUserMutation.mutate({
       name,
       email,
       password,
+      passwordConfirmation,
     });
   };
 

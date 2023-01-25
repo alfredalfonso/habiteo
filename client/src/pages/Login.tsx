@@ -1,8 +1,27 @@
 import { LoginForm, ILoginProps } from '../components/LoginForm';
+import { useMutation, useQueryClient } from 'react-query';
+import { loginUser } from '../api/user.api';
+import Cookies from 'universal-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
+  const queryClient = useQueryClient();
+  const cookies = new Cookies();
+  const navigate = useNavigate();
+
+  const addSessionMutation = useMutation(loginUser, {
+    onSuccess: (data) => {
+      queryClient.invalidateQueries('user');
+      cookies.set('Example', data.accessToken);
+      navigate('/');
+    },
+  });
+
   const handleSubmit = ({ email, password }: ILoginProps) => {
-    console.log({ email, password });
+    addSessionMutation.mutate({
+      email,
+      password,
+    });
   };
 
   return <LoginForm onSubmit={handleSubmit} />;
