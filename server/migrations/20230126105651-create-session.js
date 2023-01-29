@@ -5,8 +5,8 @@ module.exports = {
     await queryInterface.createTable('Sessions', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
+        autoIncrement: true,
         type: Sequelize.INTEGER,
       },
       userId: {
@@ -15,6 +15,7 @@ module.exports = {
       },
       valid: {
         allowNull: false,
+        defaultValue: true,
         type: Sequelize.BOOLEAN,
       },
       userAgent: {
@@ -33,7 +34,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable('Sessions');
   },
 };

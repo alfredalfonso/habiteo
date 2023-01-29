@@ -1,26 +1,25 @@
 'use strict';
 
-const { DataTypes, Sequelize } = require('sequelize');
-const instance = require('../dbconnection');
+const { DataTypes } = require('sequelize');
+const instance = require('../src/dbconnection');
 
-const user = instance.sequelize.define(
+const session = instance.sequelize.define(
   'users',
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
     },
-    name: {
+    userId: {
       allowNull: false,
       type: DataTypes.STRING,
     },
-    email: {
+    valid: {
       allowNull: false,
-      unique: true,
-      type: DataTypes.STRING,
+      defaultValue: true,
+      type: DataTypes.BOOLEAN,
     },
-    password: {
+    userAgent: {
       allowNull: false,
       type: DataTypes.STRING,
     },
@@ -28,8 +27,8 @@ const user = instance.sequelize.define(
   {
     createdAt: true,
     updatedAt: true,
-    tableName: 'users',
+    tableName: 'sessions',
   }
 );
 
-exports.model = user;
+exports.model = session;
