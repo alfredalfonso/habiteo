@@ -1,8 +1,8 @@
-const { validatePassword } = require('../services/user.service');
-const SessionService = require('../services/session.service');
-const { signJwt } = require('../utils/jwt.utils');
+const { validatePassword } = require('../user/user.service');
+const { createSession } = require('./session.service');
+const { signJwt } = require('./util/jwt');
 
-const createSession = async (req, res) => {
+exports.createSessionHandler = async (req, res) => {
   // Validate user's password
   const user = await validatePassword(req.body.email, req.body.password);
   if (!user) {
@@ -10,7 +10,7 @@ const createSession = async (req, res) => {
   }
 
   // Create a session
-  const newSession = await SessionService.createSession(user.id, req.get('user-agent') || '');
+  const newSession = await createSession(user.id, req.get('user-agent') || '');
 
   // Create access token
   const accessToken = signJwt(
@@ -27,5 +27,3 @@ const createSession = async (req, res) => {
   // Return access and refresh token
   return res.send({ accessToken, refreshToken });
 };
-
-module.exports = { createSession };

@@ -1,18 +1,16 @@
-/* eslint-disable no-undef */
 const express = require('express');
 const cors = require('cors');
-const { createUser } = require('./controllers/user.controller');
-const { validateSignup } = require('./middlewares/validateSignup');
-const { sessionRouter } = require('./routers/session.router');
+const sessionRouter = require('./session/session.router');
+const userRouter = require('./user/user.router');
+require('dotenv').config();
 
 const app = express();
-require('dotenv').config();
 const port = process.env.PORT;
 
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:5173' }));
 
-app.post('/user/signup', validateSignup, createUser);
+app.use('/user', userRouter);
 app.use('/session', sessionRouter);
 
 app.listen(port, async () => {
