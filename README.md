@@ -1,3 +1,3 @@
-# habitora
+# habiteo
 
 ## a habit tracker app
