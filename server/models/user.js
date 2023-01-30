@@ -1,7 +1,7 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
-
+require('dotenv').config();
 const { DataTypes } = require('sequelize');
 const instance = require('../src/dbconnection');
 
@@ -9,8 +9,10 @@ const user = instance.sequelize.define(
   'users',
   {
     id: {
+      allowNull: false,
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
     name: {
       allowNull: false,
@@ -31,7 +33,7 @@ const user = instance.sequelize.define(
         return this.getDataValue('password');
       },
       set(value) {
-        const salt = bcrypt.genSaltSync(10);
+        const salt = bcrypt.genSaltSync(Number(process.env.SALT_WORK_FACTOR));
         const hash = bcrypt.hashSync(value, salt);
         this.setDataValue('password', hash);
       },
@@ -48,4 +50,4 @@ user.prototype.comparePassword = async (candidatePassword, userPassword) => {
   return bcrypt.compare(candidatePassword, userPassword).catch(() => false);
 };
 
-exports.model = user;
+module.exports = user;

@@ -7,8 +7,10 @@ const session = instance.sequelize.define(
   'users',
   {
     id: {
+      allowNull: false,
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
     userId: {
       allowNull: false,
@@ -31,4 +33,4 @@ const session = instance.sequelize.define(
   }
 );
 
-exports.model = session;
+module.exports = session;
