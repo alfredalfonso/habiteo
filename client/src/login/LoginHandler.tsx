@@ -1,4 +1,4 @@
-import { LoginForm, ILoginProps } from '../components/LoginForm';
+import { LoginForm, ILoginProps } from './LoginForm';
 import { useMutation, useQueryClient } from 'react-query';
 import { loginUser } from '../api/user.api';
 import Cookies from 'universal-cookie';

@@ -1,3 +1,4 @@
+const { omit } = require('lodash');
 const userModel = require('../../models/user');
 
 async function createUser(userDetails) {
@@ -23,7 +24,7 @@ async function validatePassword(email, password) {
     return false;
   }
 
-  return user;
+  return omit(user.toJSON(), 'password');
 }
 
 module.exports = { createUser, validatePassword };

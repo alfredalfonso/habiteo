@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { addUser } from '../api/user.api';
-import { SignUpForm } from '../components/SignUpForm';
+import { SignUpForm } from './SignUpForm';
 
 export function SignUp() {
   const queryClient = useQueryClient();
