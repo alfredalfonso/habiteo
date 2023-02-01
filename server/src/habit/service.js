@@ -11,9 +11,27 @@ async function createHabit(userId, habitDetails) {
 async function getHabitByDate(userId) {
   try {
     const habits = await habitModel.findAll({ where: { userId: userId } });
-    return habits
-      .map((habit) => habit.getDataValue('recurrence'))
-      .map((recurrence) => JSON.parse(recurrence.type));
+    const showHabits = [];
+    for (let habit of habits) {
+      const recurrence = habit.getDataValue('recurrence');
+      const type = JSON.parse(recurrence).type;
+
+      switch (type) {
+        case 'daily':
+          showHabits.push(habit);
+          break;
+
+        case 'interval':
+          break;
+
+        case 'monthly':
+          break;
+
+        default:
+          break;
+      }
+    }
+    return showHabits;
   } catch (error) {
     /* empty */
   }
