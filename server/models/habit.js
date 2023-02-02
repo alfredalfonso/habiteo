@@ -30,7 +30,7 @@ const habit = instance.sequelize.define(
     },
     recurrence: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.JSON,
     },
   },
   {

@@ -8,29 +8,47 @@ async function createHabit(userId, habitDetails) {
   }
 }
 
-async function getHabitByDate(userId) {
+async function getHabitByDate(userId, date) {
   try {
     const habits = await habitModel.findAll({ where: { userId: userId } });
     const showHabits = [];
-    for (let habit of habits) {
-      const recurrence = habit.getDataValue('recurrence');
-      const type = JSON.parse(recurrence).type;
+    const inputDate = new Date(date);
 
-      switch (type) {
+    habits.forEach((habit) => {
+      const recurrence = JSON.parse(habit.getDataValue('recurrence'));
+      const findDateValue = habit.getDataValue('createdAt');
+      const findDate = new Date(findDateValue);
+
+      switch (recurrence.type) {
         case 'daily':
-          showHabits.push(habit);
+          recurrence.option.map((day) => {
+            if (day == inputDate.getDay()) {
+              showHabits.push(habit);
+            }
+          });
           break;
 
         case 'interval':
+          while (findDate.getDate() <= inputDate.getDate()) {
+            if (findDate.getDate() == inputDate.getDate()) {
+              showHabits.push(habit);
+              break;
+            } else {
+              findDate.setDate(findDate.getDate() + recurrence.option[0]);
+            }
+          }
           break;
 
         case 'monthly':
+          recurrence.option.map((day) => {
+            if (inputDate.getDate() == day) showHabits.push(habit);
+          });
           break;
 
         default:
           break;
       }
-    }
+    });
     return showHabits;
   } catch (error) {
     /* empty */

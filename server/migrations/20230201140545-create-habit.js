@@ -27,7 +27,7 @@ module.exports = {
       },
       recurrence: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.JSON,
       },
       createdAt: {
         allowNull: false,
