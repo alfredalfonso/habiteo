@@ -1,5 +1,5 @@
 const get = require('lodash/get');
-const { verifyJwt } = require('./jwtUtils');
+const { verifyJwt } = require('../util/jwt');
 const { reissueAcessToken } = require('../session/service');
 
 async function deserializeUser(req, res, next) {

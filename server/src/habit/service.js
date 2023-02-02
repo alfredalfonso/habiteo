@@ -24,9 +24,6 @@ async function getHabitByDate(userId, date) {
       startingDate.setMinutes(0);
       startingDate.setSeconds(0);
 
-      console.log('startingDate: ' + startingDate);
-      console.log('inputDate: ' + inputDate);
-
       if (inputDate.getTime() >= startingDate.getTime()) {
         switch (recurrence.type) {
           case 'daily':

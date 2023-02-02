@@ -1,6 +1,6 @@
 const { validatePassword } = require('../user/service');
 const { createSession, findSession, updateSession } = require('./service');
-const { signJwt } = require('../middleware/jwtUtils');
+const { signJwt } = require('../util/jwt');
 
 async function createSessionHandler(req, res) {
   // Validate user's password

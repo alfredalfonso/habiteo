@@ -1,6 +1,6 @@
 const sessionModel = require('../../models/session');
 const userModel = require('../../models/user');
-const { signJwt, verifyJwt } = require('../middleware/jwtUtils');
+const { signJwt, verifyJwt } = require('../util/jwt');
 const get = require('lodash/get');
 
 async function createSession(userId, userAgent) {
