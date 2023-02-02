@@ -16,37 +16,49 @@ async function getHabitByDate(userId, date) {
 
     habits.forEach((habit) => {
       const recurrence = JSON.parse(habit.getDataValue('recurrence'));
-      const findDateValue = habit.getDataValue('createdAt');
-      const findDate = new Date(findDateValue);
+      const startingDateValue = habit.getDataValue('createdAt');
+      const startingDate = new Date(startingDateValue);
 
-      switch (recurrence.type) {
-        case 'daily':
-          recurrence.option.map((day) => {
-            if (day == inputDate.getDay()) {
-              showHabits.push(habit);
+      // Reset time to 0
+      startingDate.setHours(0);
+      startingDate.setMinutes(0);
+      startingDate.setSeconds(0);
+
+      console.log('startingDate: ' + startingDate);
+      console.log('inputDate: ' + inputDate);
+
+      if (inputDate.getTime() >= startingDate.getTime()) {
+        switch (recurrence.type) {
+          case 'daily':
+            recurrence.option.map((day) => {
+              if (day == inputDate.getDay()) {
+                showHabits.push(habit);
+              }
+            });
+            break;
+
+          case 'interval':
+            while (startingDate.getDate() <= inputDate.getDate()) {
+              if (startingDate.getDate() == inputDate.getDate()) {
+                showHabits.push(habit);
+                break;
+              } else {
+                startingDate.setDate(startingDate.getDate() + recurrence.option[0]);
+              }
             }
-          });
-          break;
+            break;
 
-        case 'interval':
-          while (findDate.getDate() <= inputDate.getDate()) {
-            if (findDate.getDate() == inputDate.getDate()) {
-              showHabits.push(habit);
-              break;
-            } else {
-              findDate.setDate(findDate.getDate() + recurrence.option[0]);
-            }
-          }
-          break;
+          case 'monthly':
+            recurrence.option.map((day) => {
+              if (inputDate.getDate() == day) {
+                showHabits.push(habit);
+              }
+            });
+            break;
 
-        case 'monthly':
-          recurrence.option.map((day) => {
-            if (inputDate.getDate() == day) showHabits.push(habit);
-          });
-          break;
-
-        default:
-          break;
+          default:
+            break;
+        }
       }
     });
     return showHabits;
