@@ -17,4 +17,12 @@ async function getHabitByDateHandler(req, res) {
   return res.send(habits);
 }
 
-module.exports = { createHabitHandler, getHabitByDateHandler };
+async function deleteHabitHandler(req, res) {
+  try {
+    return res.status(200).json(habitService.deleteHabit(req.body.id));
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+}
+
+module.exports = { createHabitHandler, getHabitByDateHandler, deleteHabitHandler };

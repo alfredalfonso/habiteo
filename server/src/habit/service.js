@@ -64,4 +64,12 @@ async function getHabitByDate(userId, date) {
   }
 }
 
-module.exports = { createHabit, getHabitByDate };
+async function deleteHabit(id) {
+  try {
+    return await habitModel.destroy({ where: { id: id } });
+  } catch (error) {
+    throw new Error(error.errors[0].message);
+  }
+}
+
+module.exports = { createHabit, getHabitByDate, deleteHabit };
