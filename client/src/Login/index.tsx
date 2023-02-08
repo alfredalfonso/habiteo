@@ -1,6 +1,6 @@
-import { LoginForm, ILoginProps } from './LoginForm';
+import { LoginForm, ILoginProps } from './component';
 import { useMutation, useQueryClient } from 'react-query';
-import { loginUser } from '../api/user.api';
+import { loginUser } from './api';
 import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 

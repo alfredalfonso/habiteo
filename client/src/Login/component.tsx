@@ -1,5 +1,5 @@
 import { Button, Card, CardImg, Form } from 'react-bootstrap';
-import { CenterComponent } from '../containers/CenterComponent';
+import { CenterComponent } from '../common/components/CenterComponent';
 import React, { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';

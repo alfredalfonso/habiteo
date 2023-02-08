@@ -1,5 +1,5 @@
 import { Button, Form } from 'react-bootstrap';
-import { CenterComponent } from '../containers/CenterComponent';
+import { CenterComponent } from '../common/components/CenterComponent';
 import React, { useState } from 'react';
 
 interface IFormProps {
