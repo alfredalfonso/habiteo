@@ -1,5 +1,5 @@
 import { Button, Form } from 'react-bootstrap';
-import { CenterComponent } from '../common/components/CenterComponent';
+import { HBTCenterComponent } from '../common/components/HBTCenterComponent';
 import React, { useState } from 'react';
 
 interface IFormProps {
@@ -11,7 +11,7 @@ interface IFormProps {
   ) => void;
 }
 
-export function SignUpForm(props: IFormProps) {
+export function HBTSignUpForm(props: IFormProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,7 +33,7 @@ export function SignUpForm(props: IFormProps) {
   }
 
   return (
-    <CenterComponent>
+    <HBTCenterComponent>
       <Form
         className="d-grid border p-4 "
         style={{ width: 550 }}
@@ -80,6 +80,6 @@ export function SignUpForm(props: IFormProps) {
           Submit
         </Button>
       </Form>
-    </CenterComponent>
+    </HBTCenterComponent>
   );
 }

@@ -1,5 +1,5 @@
-import { Button, Card, CardImg, Form } from 'react-bootstrap';
-import { CenterComponent } from '../common/components/CenterComponent';
+import { Button, Card, Form } from 'react-bootstrap';
+import { HBTCenterComponent } from '../common/components/HBTCenterComponent';
 import React, { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ export interface ILoginFormProps {
   onSubmit: ({ email, password }: ILoginProps) => void;
 }
 
-export function LoginForm(props: ILoginFormProps) {
+export function HBTLoginForm(props: ILoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const cookies = new Cookies();
@@ -34,7 +34,7 @@ export function LoginForm(props: ILoginFormProps) {
   });
 
   return (
-    <CenterComponent>
+    <HBTCenterComponent>
       <Card>
         <Form
           className="d-grid p-4"
@@ -65,6 +65,6 @@ export function LoginForm(props: ILoginFormProps) {
           </Button>
         </Form>
       </Card>
-    </CenterComponent>
+    </HBTCenterComponent>
   );
 }

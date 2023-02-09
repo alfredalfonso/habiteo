@@ -1,4 +1,4 @@
-import { LoginForm, ILoginProps } from './component';
+import { HBTLoginForm, ILoginProps } from './HBTLoginForm';
 import { useMutation, useQueryClient } from 'react-query';
 import { loginUser } from './api';
 import Cookies from 'universal-cookie';
@@ -24,5 +24,5 @@ export function Login() {
     });
   };
 
-  return <LoginForm onSubmit={handleSubmit} />;
+  return <HBTLoginForm onSubmit={handleSubmit} />;
 }

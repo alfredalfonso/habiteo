@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../Login/api';
 import { addUser } from './api';
-import { SignUpForm } from './component';
+import { HBTSignUpForm } from './HBTSignUpForm';
 
 export function SignUp() {
   const queryClient = useQueryClient();
@@ -30,5 +30,5 @@ export function SignUp() {
     });
   }
 
-  return <SignUpForm onSubmit={signUpHandler} />;
+  return <HBTSignUpForm onSubmit={signUpHandler} />;
 }
