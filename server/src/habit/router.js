@@ -6,7 +6,7 @@ const habitSchema = require('./schema');
 const habitRouter = Router();
 
 habitRouter.post('/create', requireUser, validateSchema(habitSchema), createHabitHandler);
-habitRouter.get('/get', requireUser, getHabitByDateHandler);
+habitRouter.get('/get/:inputDate', requireUser, getHabitByDateHandler);
 habitRouter.delete('/', requireUser, deleteHabitHandler);
 
 module.exports = habitRouter;
