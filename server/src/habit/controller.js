@@ -11,8 +11,11 @@ async function createHabitHandler(req, res) {
 }
 
 async function getHabitByDateHandler(req, res) {
-  const userId = res.locals.user.dataValues.id;
-  const { inputDate } = req.body;
+  let userId = res.locals.user.id;
+  if (userId == undefined) {
+    userId = res.locals.user.dataValues.id;
+  }
+  const { inputDate } = req.params;
   const habits = await habitService.getHabitByDate(userId, inputDate);
   return res.send(habits);
 }
