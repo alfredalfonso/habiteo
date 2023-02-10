@@ -9,7 +9,6 @@ export async function loginUser({
 }) {
   try {
     const { data } = await baseURL.post('/session/login', { email, password });
-    console.log(data);
     return data;
   } catch (error: any) {
     throw Error(error.response.data.message);

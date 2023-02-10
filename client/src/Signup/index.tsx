@@ -6,13 +6,11 @@ import { HBTSignUpForm } from './HBTSignUpForm';
 
 export function SignUp() {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
 
   const addUserMutation = useMutation(addUser, {
     onSuccess: async (data) => {
       queryClient.invalidateQueries('user');
       await loginUser({ email: data.email, password: data.password });
-      navigate('/');
     },
   });
 

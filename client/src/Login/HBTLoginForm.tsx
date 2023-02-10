@@ -26,13 +26,6 @@ export function HBTLoginForm(props: ILoginFormProps) {
     onSubmit({ email, password });
   }
 
-  useEffect(() => {
-    if (cookies.get('Example') != undefined) {
-      navigate('/');
-      console.log('Check from loginform');
-    }
-  });
-
   return (
     <HBTCenterComponent>
       <Card>
