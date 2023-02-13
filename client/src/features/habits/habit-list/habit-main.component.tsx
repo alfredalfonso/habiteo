@@ -3,8 +3,6 @@ import { getDateToday } from '@utils/get-date-today';
 import { useQuery } from 'react-query';
 import { getHabits } from './get-habit.api';
 import { HBTHabitList } from './habit-list.component';
-import Stack from 'react-bootstrap/Stack';
-import Button from 'react-bootstrap/Button';
 import { HBTHabitHeader } from './habit-header.component';
 
 interface HabitProps {
@@ -46,7 +44,7 @@ export function HBTHabitMain() {
       {data?.length != 0 ? (
         <HBTHabitList habits={habits} />
       ) : (
-        <h2>No habits there</h2>
+        <h2 className="text-muted">No habits there</h2>
       )}
     </div>
   );

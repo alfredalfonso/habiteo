@@ -3,7 +3,8 @@ import Cookies from 'universal-cookie';
 
 function handleLogout() {
   const cookies = new Cookies();
-  cookies.remove('Example');
+  cookies.remove('access-token');
+  cookies.remove('refresh-token');
 }
 
 export function HBTAvatarDropdown() {
