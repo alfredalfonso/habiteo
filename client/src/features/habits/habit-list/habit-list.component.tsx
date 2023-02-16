@@ -1,5 +1,5 @@
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Habit } from '../habit-types';
+import { Habit } from '../habit.type';
 import { HBTHabitItem } from './habit-item.component';
 
 type Props = {

@@ -1,6 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 import { useMutation, useQueryClient } from 'react-query';
-import { Habit } from '../habit-types';
+import { Habit } from '../habit.type';
 import { createHabit } from './create-habit.api';
 import { HBTHabitForm } from './habit-form.component';
 
@@ -20,7 +20,7 @@ export function FormModal(props: Props) {
     },
   });
 
-  function handleSubmit(input: Habit) {
+  function handleSubmit(input: Omit<Habit, 'id' | 'createdAt' | 'updatedAt'>) {
     addSessionMutation.mutate({
       ...input,
     });

@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { DailyOptions } from './option-daily/option-daily.component';
 import { IntervalOptions } from './option-interval/option-interval.component';
 import { createHabitInput } from './habit-types';
-import { Habit } from '../habit-types';
+import { Habit } from '../habit.type';
 
 type Props = {
   handleCloseModal?: () => void;

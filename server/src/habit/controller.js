@@ -20,6 +20,14 @@ async function getHabitByDateHandler(req, res) {
   return res.send(habits);
 }
 
+async function updateHabitById(req, res) {
+  let userId = res.locals.user.id;
+  if (userId == undefined) {
+    userId = res.locals.user.dataValues.id;
+  }
+  return await habitService.updateHabit(req.params.id);
+}
+
 async function deleteHabitHandler(req, res) {
   try {
     return res.status(200).json(habitService.deleteHabit(req.body.id));
@@ -28,4 +36,4 @@ async function deleteHabitHandler(req, res) {
   }
 }
 
-module.exports = { createHabitHandler, getHabitByDateHandler, deleteHabitHandler };
+module.exports = { createHabitHandler, getHabitByDateHandler, updateHabitById, deleteHabitHandler };

@@ -4,25 +4,11 @@ import { useQuery } from 'react-query';
 import { getHabits } from './get-habit.api';
 import { HBTHabitList } from './habit-list.component';
 import { HBTHabitHeader } from './habit-header.component';
-import { Habit } from '../habit-types';
-
-interface HabitProps {
-  id: number;
-  userId: number;
-  name: string;
-  unit: string;
-  value: number;
-  recurrence: {
-    option: number[];
-    type: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
+import { Habit } from '../habit.type';
 
 export function HBTHabitMain() {
   const [inputDate, setInputDate] = useState(getDateToday);
-  const { data } = useQuery<HabitProps[]>(['habits', inputDate], () =>
+  const { data } = useQuery<Habit[]>(['habits', inputDate], () =>
     getHabits(inputDate)
   );
 

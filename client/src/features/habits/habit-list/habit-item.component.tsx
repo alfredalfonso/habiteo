@@ -3,7 +3,7 @@ import { Button, Dropdown, DropdownButton, Stack } from 'react-bootstrap';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import { BsCheckLg } from 'react-icons/bs';
 import { FormModal } from '../habit-modal-form/habit-modal.component';
-import { Habit } from '../habit-types';
+import { Habit } from '../habit.type';
 
 type Props = {
   habit: Habit;

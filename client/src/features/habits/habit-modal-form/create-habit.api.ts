@@ -1,27 +1,20 @@
 import { baseServerURL } from '@utils/base-server-url';
 import Cookies from 'universal-cookie';
+import { Habit } from '../habit.type';
 
-interface Habit {
-  name: string;
-  unit: string;
-  value: number;
-  recurrence: {
-    type: string;
-    option: number[];
-  };
-}
-
-export async function createHabit(props: Habit) {
+export async function createHabit(
+  input: Omit<Habit, 'id' | 'createdAt' | 'updatedAt'>
+) {
   try {
     const cookies = new Cookies();
 
     const newHabit = {
-      name: props.name,
-      unit: props.unit,
-      value: props.value,
+      name: input.name,
+      unit: input.unit,
+      value: input.value,
       recurrence: {
-        type: props.recurrence.type,
-        option: props.recurrence.option,
+        type: input.recurrence.type,
+        option: input.recurrence.option,
       },
     };
 
