@@ -7,6 +7,7 @@ import { createHabitInput } from './habit-types';
 interface Props {
   show: boolean;
   onHide: () => void;
+  modalTitle: string;
 }
 
 export function MyVerticallyCenteredModal(props: Props) {
@@ -34,7 +35,7 @@ export function MyVerticallyCenteredModal(props: Props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Create New Habit
+          {props.modalTitle}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-4">

@@ -1,30 +1,21 @@
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Habit } from '../habit-types';
 import { HBTHabitItem } from './habit-item.component';
 
-// interface HabitProps {
-//   id: number;
-//   userId: number;
-//   name: string;
-//   unit: string;
-//   value: number;
-//   recurrence: {
-//     option: number[];
-//     type: string;
-//   };
-//   createdAt: string;
-//   updatedAt: string;
-// }
+type Props = {
+  habits: Habit[];
+  setModalHabitForm: (args0: boolean) => void;
+};
 
-interface HabitPropsMin {
-  name: string;
-  type: string;
-}
-
-export function HBTHabitList({ habits }: { habits: HabitPropsMin[] }) {
+export function HBTHabitList({ habits, setModalHabitForm }: Props) {
   return (
     <ListGroup>
       {habits.map((habit: any) => (
-        <HBTHabitItem key={habit.id} name={habit.name} type={habit.type} />
+        <HBTHabitItem
+          key={habit.id}
+          habit={habit}
+          setModalHabitForm={setModalHabitForm}
+        />
       ))}
     </ListGroup>
   );
