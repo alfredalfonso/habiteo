@@ -25,7 +25,8 @@ async function updateHabitById(req, res) {
   if (userId == undefined) {
     userId = res.locals.user.dataValues.id;
   }
-  return await habitService.updateHabit(req.params.id);
+  await habitService.updateHabit(req.params.id, req.body);
+  return res.send('Updated successfully');
 }
 
 async function deleteHabitHandler(req, res) {

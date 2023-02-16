@@ -64,12 +64,8 @@ async function getHabitByDate(userId, date) {
   }
 }
 
-async function updateHabit(id) {
-  try {
-    return await habitModel.update({ where: { id: id } });
-  } catch (error) {
-    throw new Error(error.errors[0].message);
-  }
+async function updateHabit(id, updateHabit) {
+  return await habitModel.update({ ...updateHabit }, { where: { id: id } });
 }
 
 async function deleteHabit(id) {
