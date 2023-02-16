@@ -11,11 +11,7 @@ export function HBTHabitList({ habits, setModalHabitForm }: Props) {
   return (
     <ListGroup>
       {habits.map((habit: any) => (
-        <HBTHabitItem
-          key={habit.id}
-          habit={habit}
-          setModalHabitForm={setModalHabitForm}
-        />
+        <HBTHabitItem key={habit.id} habit={habit} />
       ))}
     </ListGroup>
   );

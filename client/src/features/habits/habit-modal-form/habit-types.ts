@@ -1,4 +1,4 @@
-export interface createHabitInput {
+export interface Habit {
   name: string;
   unit: string;
   value: number;

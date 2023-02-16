@@ -1,16 +1,17 @@
 import Modal from 'react-bootstrap/Modal';
 import { useMutation, useQueryClient } from 'react-query';
+import { Habit } from '../habit-types';
 import { createHabit } from './create-habit.api';
 import { HBTHabitForm } from './habit-form.component';
-import { createHabitInput } from './habit-types';
 
 interface Props {
   show: boolean;
   onHide: () => void;
   modalTitle: string;
+  data?: Habit;
 }
 
-export function MyVerticallyCenteredModal(props: Props) {
+export function FormModal(props: Props) {
   const queryClient = useQueryClient();
 
   const addSessionMutation = useMutation(createHabit, {
@@ -19,7 +20,7 @@ export function MyVerticallyCenteredModal(props: Props) {
     },
   });
 
-  function handleSubmit(input: createHabitInput) {
+  function handleSubmit(input: Habit) {
     addSessionMutation.mutate({
       ...input,
     });
@@ -39,7 +40,11 @@ export function MyVerticallyCenteredModal(props: Props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-4">
-        <HBTHabitForm handleCloseModal={props.onHide} onSubmit={handleSubmit} />
+        <HBTHabitForm
+          handleCloseModal={props.onHide}
+          onSubmit={handleSubmit}
+          habit={props.data}
+        />
       </Modal.Body>
     </Modal>
   );

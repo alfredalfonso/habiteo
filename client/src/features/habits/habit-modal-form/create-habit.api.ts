@@ -1,7 +1,7 @@
 import { baseServerURL } from '@utils/base-server-url';
 import Cookies from 'universal-cookie';
 
-interface createHabitInput {
+interface Habit {
   name: string;
   unit: string;
   value: number;
@@ -11,7 +11,7 @@ interface createHabitInput {
   };
 }
 
-export async function createHabit(props: createHabitInput) {
+export async function createHabit(props: Habit) {
   try {
     const cookies = new Cookies();
 

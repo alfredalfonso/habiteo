@@ -5,18 +5,20 @@ import React, { useState } from 'react';
 import { DailyOptions } from './option-daily/option-daily.component';
 import { IntervalOptions } from './option-interval/option-interval.component';
 import { createHabitInput } from './habit-types';
+import { Habit } from '../habit-types';
 
 type Props = {
   handleCloseModal?: () => void;
   onSubmit: (input: createHabitInput) => void;
+  habit?: Habit | undefined;
 };
 
-export function HBTHabitForm({ handleCloseModal, onSubmit }: Props) {
-  const [name, setName] = useState('');
-  const [unit, setUnit] = useState('');
-  const [value, setValue] = useState(0);
-  const [type, setType] = useState('daily');
-  const [option, setOption] = useState([]);
+export function HBTHabitForm({ handleCloseModal, onSubmit, habit }: Props) {
+  const [name, setName] = useState(habit ? habit.name : '');
+  const [unit, setUnit] = useState(habit ? habit.unit : '');
+  const [value, setValue] = useState(habit ? habit.value : 0);
+  const [type, setType] = useState(habit ? habit.recurrence.type : 'daily');
+  const [option, setOption] = useState(habit ? habit.recurrence.option : []);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -77,9 +79,15 @@ export function HBTHabitForm({ handleCloseModal, onSubmit }: Props) {
           <Form.Group className="mb-3" controlId="formOptions">
             <Form.Label>Options</Form.Label>
             {type == 'daily' ? (
-              <DailyOptions setSelectedWeekdays={setOption} />
+              <DailyOptions
+                setSelectedWeekdays={setOption}
+                defaultSelectedWeekdays={option}
+              />
             ) : (
-              <IntervalOptions setSelectedInterval={setOption} />
+              <IntervalOptions
+                setSelectedInterval={setOption}
+                defaultSelectedInterval={option}
+              />
             )}
           </Form.Group>
         </Col>
@@ -87,7 +95,7 @@ export function HBTHabitForm({ handleCloseModal, onSubmit }: Props) {
 
       <Stack direction="horizontal" gap={2} className="mt-3">
         <Button variant="primary" type="submit" onClick={handleCloseModal}>
-          Create
+          Save
         </Button>
         <Button variant="secondary" onClick={handleCloseModal}>
           Cancel

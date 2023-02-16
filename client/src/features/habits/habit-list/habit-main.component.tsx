@@ -5,7 +5,6 @@ import { getHabits } from './get-habit.api';
 import { HBTHabitList } from './habit-list.component';
 import { HBTHabitHeader } from './habit-header.component';
 import { Habit } from '../habit-types';
-import { MyVerticallyCenteredModal } from '../habit-modal-form/habit-modal.component';
 
 interface HabitProps {
   id: number;
@@ -64,11 +63,6 @@ export function HBTHabitMain() {
       ) : (
         <h2 className="text-muted">No habits there</h2>
       )}
-      <MyVerticallyCenteredModal
-        show={modalHabitForm}
-        onHide={() => setModalHabitForm(false)}
-        modalTitle="test"
-      />
     </div>
   );
 }

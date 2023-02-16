@@ -2,15 +2,16 @@ import { useState } from 'react';
 import { Button, Dropdown, DropdownButton, Stack } from 'react-bootstrap';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import { BsCheckLg } from 'react-icons/bs';
+import { FormModal } from '../habit-modal-form/habit-modal.component';
 import { Habit } from '../habit-types';
 
 type Props = {
   habit: Habit;
-  setModalHabitForm: (args0: boolean) => void;
 };
 
-export function HBTHabitItem({ habit, setModalHabitForm }: Props) {
+export function HBTHabitItem({ habit }: Props) {
   const [isDone, setIsDone] = useState(false);
+  const [modalEditHabit, setModalEditHabit] = useState(false);
 
   return (
     <ListGroupItem className="py-3 lh-sm">
@@ -34,7 +35,7 @@ export function HBTHabitItem({ habit, setModalHabitForm }: Props) {
               id="dropdown-basic"
             ></Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => setModalHabitForm(true)}>
+              <Dropdown.Item onClick={() => setModalEditHabit(true)}>
                 Edit
               </Dropdown.Item>
               <Dropdown.Item>View progress</Dropdown.Item>
@@ -43,6 +44,12 @@ export function HBTHabitItem({ habit, setModalHabitForm }: Props) {
             </Dropdown.Menu>
           </Dropdown>
         </Stack>
+        <FormModal
+          show={modalEditHabit}
+          onHide={() => setModalEditHabit(false)}
+          modalTitle="Edit Habit"
+          data={habit}
+        />
       </div>
       <div className="col-10 mb-1 small">{`0/${habit.value}`}</div>
     </ListGroupItem>

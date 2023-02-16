@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { FormControl } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
-import { MyVerticallyCenteredModal } from '../habit-modal-form/habit-modal.component';
+import { FormModal } from '../habit-modal-form/habit-modal.component';
 
 interface Props {
   inputDate: string;
@@ -9,11 +10,9 @@ interface Props {
   setModalHabitForm: (arg0: boolean) => void;
 }
 
-export function HBTHabitHeader({
-  inputDate,
-  setInputDate,
-  setModalHabitForm,
-}: Props) {
+export function HBTHabitHeader({ inputDate, setInputDate }: Props) {
+  const [modalCreateHabit, setModalCreateHabit] = useState(false);
+
   return (
     <div className="habit-header">
       <div className="d-flex align-items-center justify-content-between">
@@ -26,11 +25,12 @@ export function HBTHabitHeader({
             value={inputDate}
             onChange={(e) => setInputDate(e.target.value)}
           />
-          <Button onClick={() => setModalHabitForm(true)}>+</Button>
-          {/* <MyVerticallyCenteredModal
+          <Button onClick={() => setModalCreateHabit(true)}>+</Button>
+          <FormModal
             show={modalCreateHabit}
             onHide={() => setModalCreateHabit(false)}
-          /> */}
+            modalTitle="New Habit"
+          />
         </Stack>
       </div>
     </div>
