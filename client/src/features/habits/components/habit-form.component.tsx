@@ -96,9 +96,20 @@ export function HBTHabitForm({ handleCloseModal, onSubmit, habit }: Props) {
       </Row>
 
       <Stack direction="horizontal" gap={2} className="mt-3">
-        <Button variant="primary" type="submit" onClick={handleCloseModal}>
-          Save
-        </Button>
+        {name != '' && unit != '' && value != 0 && option.length > 0 ? (
+          <Button variant="primary" type="submit" onClick={handleCloseModal}>
+            Save
+          </Button>
+        ) : (
+          <Button
+            variant="primary"
+            disabled
+            type="submit"
+            onClick={handleCloseModal}
+          >
+            Save
+          </Button>
+        )}
         <Button variant="secondary" onClick={handleCloseModal}>
           Cancel
         </Button>
