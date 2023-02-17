@@ -5,6 +5,8 @@ import { BsCheckLg } from 'react-icons/bs';
 import { FormModal } from './habit-modal.component';
 import { Habit } from '../types/habit.type';
 import { updateHabit } from '../api/update-habit.api';
+import { deleteHabit } from '../api/delete-habit.api';
+import { useMutation, useQueryClient } from 'react-query';
 
 type Props = {
   habit: Habit;
@@ -13,6 +15,18 @@ type Props = {
 export function HBTHabitItem({ habit }: Props) {
   const [isDone, setIsDone] = useState(false);
   const [modalEditHabit, setModalEditHabit] = useState(false);
+
+  const queryClient = useQueryClient();
+
+  const sessionMutation = useMutation(deleteHabit, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['habits']);
+    },
+  });
+
+  function handleDelete(inputId: number | undefined) {
+    sessionMutation.mutate(inputId);
+  }
 
   return (
     <ListGroupItem className="py-3 lh-sm">
@@ -41,7 +55,9 @@ export function HBTHabitItem({ habit }: Props) {
               </Dropdown.Item>
               <Dropdown.Item>View progress</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item>Delete</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleDelete(habit.id)}>
+                Delete
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Stack>
