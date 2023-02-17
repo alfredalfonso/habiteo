@@ -1,7 +1,7 @@
 import { baseServerURL } from '@features/habits/utils/base-server-url';
 import Cookies from 'universal-cookie';
 
-export async function deleteHabit(inputId: number) {
+export async function deleteHabit(inputId: number | undefined) {
   const cookies = new Cookies();
 
   return await baseServerURL
