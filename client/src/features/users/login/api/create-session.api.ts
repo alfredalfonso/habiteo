@@ -1,4 +1,4 @@
-import { baseServerURL } from '@utils/base-server-url';
+import { baseServerURL } from '@features/habits/utils/base-server-url';
 
 export async function createSession({
   email,

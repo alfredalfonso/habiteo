@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Button, Dropdown, DropdownButton, Stack } from 'react-bootstrap';
+import { Button, Dropdown, Stack } from 'react-bootstrap';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import { BsCheckLg } from 'react-icons/bs';
-import { FormModal } from '../habit-modal-form/habit-modal.component';
-import { Habit } from '../habit.type';
+import { FormModal } from './habit-modal.component';
+import { Habit } from '../types/habit.type';
+import { updateHabit } from '../api/update-habit.api';
 
 type Props = {
   habit: Habit;
@@ -49,6 +50,7 @@ export function HBTHabitItem({ habit }: Props) {
           onHide={() => setModalEditHabit(false)}
           modalTitle="Edit Habit"
           data={habit}
+          api={updateHabit}
         />
       </div>
       <div className="col-10 mb-1 small">{`0/${habit.value}`}</div>

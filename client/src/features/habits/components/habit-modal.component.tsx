@@ -1,7 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 import { useMutation, useQueryClient } from 'react-query';
-import { Habit } from '../habit.type';
-import { createHabit } from './create-habit.api';
+import { CreateHabitInput, Habit, UpdateHabitInput } from '../types/habit.type';
 import { HBTHabitForm } from './habit-form.component';
 
 interface Props {
@@ -9,19 +8,22 @@ interface Props {
   onHide: () => void;
   modalTitle: string;
   data?: Habit;
+  api:
+    | ((input: UpdateHabitInput) => Promise<any>)
+    | ((input: CreateHabitInput) => Promise<any>);
 }
 
 export function FormModal(props: Props) {
   const queryClient = useQueryClient();
 
-  const addSessionMutation = useMutation(createHabit, {
+  const sessionMutation = useMutation(props.api, {
     onSuccess: () => {
       queryClient.invalidateQueries(['habits']);
     },
   });
 
-  function handleSubmit(input: Omit<Habit, 'id' | 'createdAt' | 'updatedAt'>) {
-    addSessionMutation.mutate({
+  function handleSubmit(input: any) {
+    sessionMutation.mutate({
       ...input,
     });
   }

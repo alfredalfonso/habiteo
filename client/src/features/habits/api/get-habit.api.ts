@@ -1,4 +1,4 @@
-import { baseServerURL } from '@utils/base-server-url';
+import { baseServerURL } from '@features/habits/utils/base-server-url';
 import Cookies from 'universal-cookie';
 
 export async function getHabits(inputDate: string) {

@@ -1,5 +1,5 @@
 import { useMutation } from 'react-query';
-import { createUser } from './create-user.api';
+import { createUser } from '../api/create-user.api';
 import { SignUpForm } from './signup-form.component';
 
 export function ConnectedSignUpForm() {

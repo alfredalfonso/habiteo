@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { getDateToday } from '@utils/get-date-today';
+import { getDateToday } from '@features/habits/utils/get-date-today';
 import { useQuery } from 'react-query';
-import { getHabits } from './get-habit.api';
+import { getHabits } from '../api/get-habit.api';
 import { HBTHabitList } from './habit-list.component';
 import { HBTHabitHeader } from './habit-header.component';
-import { Habit } from '../habit.type';
+import { Habit } from '../types/habit.type';
 
 export function HBTHabitMain() {
   const [inputDate, setInputDate] = useState(getDateToday);

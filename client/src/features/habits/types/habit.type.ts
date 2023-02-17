@@ -1,5 +1,5 @@
 export interface Habit {
-  id: number;
+  id: number | undefined;
   name: string;
   unit: string;
   value: number;
@@ -10,3 +10,6 @@ export interface Habit {
   createdAt: string;
   updatedAt: string;
 }
+
+export type CreateHabitInput = Omit<Habit, 'id' | 'createdAt' | 'updatedAt'>;
+export type UpdateHabitInput = Omit<Habit, 'createdAt' | 'updatedAt'>;

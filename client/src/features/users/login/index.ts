@@ -1,1 +1,1 @@
-export { ConnectedLoginForm } from './connected-login-form.component';
+export { ConnectedLoginForm } from './components/connected-login-form.component';

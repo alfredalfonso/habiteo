@@ -1,1 +1,1 @@
-export * from './habit-list';
+export { HBTHabitMain } from './components/habit-main.component';

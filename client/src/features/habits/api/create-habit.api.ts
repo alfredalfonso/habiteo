@@ -1,6 +1,6 @@
-import { baseServerURL } from '@utils/base-server-url';
+import { baseServerURL } from '@features/habits/utils/base-server-url';
 import Cookies from 'universal-cookie';
-import { Habit } from '../habit.type';
+import { Habit } from '../types/habit.type';
 
 export async function createHabit(
   input: Omit<Habit, 'id' | 'createdAt' | 'updatedAt'>

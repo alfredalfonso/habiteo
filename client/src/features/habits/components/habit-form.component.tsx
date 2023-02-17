@@ -2,14 +2,15 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Col, Row, Stack } from 'react-bootstrap';
 import React, { useState } from 'react';
-import { DailyOptions } from './option-daily/option-daily.component';
-import { IntervalOptions } from './option-interval/option-interval.component';
-import { createHabitInput } from './habit-types';
-import { Habit } from '../habit.type';
+import { DailyOptions } from './option-daily.component';
+import { IntervalOptions } from './option-interval.component';
+import { CreateHabitInput, Habit, UpdateHabitInput } from '../types/habit.type';
 
 type Props = {
   handleCloseModal?: () => void;
-  onSubmit: (input: createHabitInput) => void;
+  onSubmit:
+    | ((input: CreateHabitInput) => void)
+    | ((input: UpdateHabitInput) => void);
   habit?: Habit | undefined;
 };
 
@@ -23,7 +24,8 @@ export function HBTHabitForm({ handleCloseModal, onSubmit, habit }: Props) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const newHabit: createHabitInput = {
+    const data: UpdateHabitInput | CreateHabitInput = {
+      id: habit?.id,
       name: name,
       unit: unit,
       value: value,
@@ -33,7 +35,7 @@ export function HBTHabitForm({ handleCloseModal, onSubmit, habit }: Props) {
       },
     };
 
-    onSubmit(newHabit);
+    onSubmit(data);
   }
 
   return (

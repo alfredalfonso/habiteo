@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from 'react-query';
-import { createSession } from './create-session.api';
+import { createSession } from '../api/create-session.api';
 import { useNavigate } from 'react-router-dom';
 import { LoginForm } from './login-form.component';
 import Cookies from 'universal-cookie';

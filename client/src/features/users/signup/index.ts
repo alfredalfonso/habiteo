@@ -1,1 +1,1 @@
-export { ConnectedSignUpForm } from './connected-signup-form.component';
+export { ConnectedSignUpForm } from './components/connected-signup-form.component';

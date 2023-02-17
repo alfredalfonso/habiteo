@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { FormControl } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
-import { FormModal } from '../habit-modal-form/habit-modal.component';
+import { createHabit } from '../api/create-habit.api';
+import { FormModal } from './habit-modal.component';
 
 interface Props {
   inputDate: string;
@@ -30,6 +31,7 @@ export function HBTHabitHeader({ inputDate, setInputDate }: Props) {
             show={modalCreateHabit}
             onHide={() => setModalCreateHabit(false)}
             modalTitle="New Habit"
+            api={createHabit}
           />
         </Stack>
       </div>
