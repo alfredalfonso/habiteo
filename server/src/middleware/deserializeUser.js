@@ -1,6 +1,6 @@
 const get = require('lodash/get');
 const { verifyJwt } = require('../util/jwt');
-const { reissueAcessToken } = require('../session/service');
+const { reissueAcessToken } = require('../features/session/service');
 
 async function deserializeUser(req, res, next) {
   const accessToken = get(req, 'headers.authorization', '').replace(/^Bearer\s/, '');

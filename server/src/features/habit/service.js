@@ -1,4 +1,4 @@
-const habitModel = require('../../models/habit');
+const habitModel = require('../../../models/habit');
 
 async function createHabit(userId, habitDetails) {
   try {

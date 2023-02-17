@@ -1,4 +1,4 @@
-const habitLogModel = require('../../models/habit_log');
+const habitLogModel = require('../../../models/habit_log');
 
 async function createHabitLog(input) {
   try {

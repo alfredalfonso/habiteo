@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const deserializeUser = require('./middleware/deserializeUser');
-const userRouter = require('./user/router');
-const sessionRouter = require('./session/router');
-const habitRouter = require('./habit/router');
-const habitLogRouter = require('./habit_log/router');
+const userRouter = require('./features/user/router');
+const sessionRouter = require('./features/session/router');
+const habitRouter = require('./features/habit/router');
+const habitLogRouter = require('./features/habit_log/router');
 require('dotenv').config();
 
 const app = express();

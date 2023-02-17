@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const validateSchema = require('../middleware/validateSchema');
-const requireUser = require('../middleware/requireUser');
+const validateSchema = require('../../middleware/validateSchema');
+const requireUser = require('../../middleware/requireUser');
 const loginSchema = require('./schema');
 const { createSessionHandler, findSessionHandler, deleteSessionHandler } = require('./controller');
 

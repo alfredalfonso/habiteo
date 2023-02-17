@@ -31,7 +31,7 @@ async function updateHabitById(req, res) {
 
 async function deleteHabitHandler(req, res) {
   try {
-    return res.status(200).json(habitService.deleteHabit(req.body.id));
+    return res.status(200).json(habitService.deleteHabit(req.params.id));
   } catch (error) {
     return res.status(500).json(error.message);
   }

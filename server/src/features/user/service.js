@@ -1,5 +1,5 @@
 const { omit } = require('lodash');
-const userModel = require('../../models/user');
+const userModel = require('../../../models/user');
 
 async function createUser(userDetails) {
   try {
