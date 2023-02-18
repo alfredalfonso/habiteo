@@ -7,20 +7,21 @@ import { Habit } from '../types/habit.type';
 import { updateHabit } from '../api/update-habit.api';
 import { deleteHabit } from '../api/delete-habit.api';
 import { useMutation, useQueryClient } from 'react-query';
+import { HBTButtonLog } from '@features/habit-log/components/habit-log-button.component';
 
 type Props = {
   habit: Habit;
+  isDone: boolean;
 };
 
-export function HBTHabitItem({ habit }: Props) {
-  const [isDone, setIsDone] = useState(false);
+export function HBTHabitItem({ habit, isDone }: Props) {
   const [modalEditHabit, setModalEditHabit] = useState(false);
 
   const queryClient = useQueryClient();
 
   const sessionMutation = useMutation(deleteHabit, {
     onSuccess: () => {
-      queryClient.invalidateQueries(['habits']);
+      queryClient.invalidateQueries(['habits', 'habit-logs']);
     },
   });
 
@@ -28,21 +29,17 @@ export function HBTHabitItem({ habit }: Props) {
     sessionMutation.mutate(inputId);
   }
 
+  // console.log('isDone: ' + isDone);
+
   return (
     <ListGroupItem className="py-3 lh-sm">
       <div className="d-flex w-100 align-items-center justify-content-between">
         <strong className="mb-1">{habit.name}</strong>
         <Stack direction="horizontal" gap={2}>
           {!isDone ? (
-            habit.value > 1 ? (
-              <Button variant="secondary">+1</Button>
-            ) : (
-              <Button variant="secondary" onClick={() => setIsDone(true)}>
-                Done
-              </Button>
-            )
+            <HBTButtonLog input={{ habitId: habit.id, value: habit.value }} />
           ) : (
-            <BsCheckLg color="green" />
+            <Button variant="success">✓</Button>
           )}
           <Dropdown>
             <Dropdown.Toggle

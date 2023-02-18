@@ -8,4 +8,8 @@ async function createHabitLog(input) {
   }
 }
 
-module.exports = { createHabitLog };
+async function getHabitLogs(inputDate) {
+  return await habitLogModel.findAll({ where: { createdAt: inputDate } });
+}
+
+module.exports = { createHabitLog, getHabitLogs };

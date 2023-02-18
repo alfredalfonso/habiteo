@@ -5,19 +5,25 @@ import { getHabits } from '../api/get-habit.api';
 import { HBTHabitList } from './habit-list.component';
 import { HBTHabitHeader } from './habit-header.component';
 import { Habit } from '../types/habit.type';
+import { getHabitLogs } from '@features/habit-log/api/get-habit-log.api';
+import { HabitLog } from '@features/habit-log';
 
 export function HBTHabitMain() {
   const [inputDate, setInputDate] = useState(getDateToday);
-  const { data } = useQuery<Habit[]>(['habits', inputDate], () =>
+  const habitQuery = useQuery<Habit[]>(['habits', inputDate], () =>
     getHabits(inputDate)
+  );
+  const habitLogsQuery = useQuery<HabitLog[]>(['habit-logs', inputDate], () =>
+    getHabitLogs(inputDate)
   );
 
   const [modalHabitForm, setModalHabitForm] = useState(false);
 
   let habitList: Habit[] = [];
+  let habitLogs: HabitLog[] = [];
 
-  if (data) {
-    data.map((habit) => {
+  if (habitQuery.data) {
+    habitQuery.data.map((habit) => {
       habitList.push({
         id: habit.id,
         name: habit.name,
@@ -33,6 +39,18 @@ export function HBTHabitMain() {
     });
   }
 
+  if (habitLogsQuery.data) {
+    habitLogsQuery.data.map((logs) => {
+      habitLogs.push({
+        id: logs.id,
+        habitId: logs.habitId,
+        value: logs.value,
+        createdAt: logs.createdAt,
+        updatedAt: logs.updatedAt,
+      });
+    });
+  }
+
   return (
     <div className="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
       <HBTHabitHeader
@@ -41,10 +59,11 @@ export function HBTHabitMain() {
         setModalHabitForm={setModalHabitForm}
       />
       <hr />
-      {data?.length != 0 ? (
+      {habitList.length != 0 ? (
         <HBTHabitList
           habits={habitList}
           setModalHabitForm={setModalHabitForm}
+          habitLogs={habitLogs}
         />
       ) : (
         <h2 className="text-muted">No habits there</h2>

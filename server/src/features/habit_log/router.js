@@ -1,8 +1,9 @@
 const { Router } = require('express');
-const { createHabitLogHandler } = require('./controller');
+const { createHabitLogHandler, getHabitLogHandler } = require('./controller');
 const requireUser = require('../../middleware/requireUser');
 const habitLogRouter = Router();
 
 habitLogRouter.post('/create', requireUser, createHabitLogHandler);
+habitLogRouter.get('/get/:inputDate/', requireUser, getHabitLogHandler);
 
 module.exports = habitLogRouter;

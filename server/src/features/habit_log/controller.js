@@ -9,4 +9,13 @@ async function createHabitLogHandler(req, res) {
   }
 }
 
-module.exports = { createHabitLogHandler };
+async function getHabitLogHandler(req, res) {
+  try {
+    const getHabitLogs = await habitLogService.getHabitLogs(req.params.inputDate);
+    return res.status(200).json(getHabitLogs);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+}
+
+module.exports = { createHabitLogHandler, getHabitLogHandler };
